@@ -66,11 +66,6 @@
   (set-face-attribute 'variable-pitch nil :family "Iosevka")
   (load-theme 'poet-dark t))
 
-;; (use-package theme-changer
-;;   :if (eq mine-appearance 'elegant)
-;;   :ensure t
-;;   :config
-;;   (change-theme 'poet 'poet-dark))
 
 (use-package smart-mode-line
   :if (eq mine-appearance 'elegant)  
@@ -89,11 +84,11 @@
   (olivetti-body-width 100)
   :hook (org-mode . olivetti-mode))
 
-;; (use-package symon
-;;   :if (eq mine-appearance 'elegant)    
-;;   :ensure t
-;;   :config
-;;   (symon-mode))
+(use-package symon
+  :if (eq mine-appearance 'elegant)    
+  :ensure t
+  :config
+  (symon-mode))
 
 (use-package org-pretty-tags
   :if (eq mine-appearance 'elegant)   
