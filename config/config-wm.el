@@ -142,6 +142,7 @@
      ("<XF86Launch8>" . exwm-workspace-move-window)
      ("<XF86Launch9>" . exwm-workspace-switch))
     :custom
+    (exwm-workspace-show-all-buffers t)
     (exwm-input-global-keys
      `(
        ([s-R]   . exwm-reset)
