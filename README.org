@@ -53,7 +53,7 @@ apt-get install mplayer
 exec dbus-launch --exit-with-session emacs
 #+END_SRC
 
-* TODO
+* Work in progress
 - [ ] Configuring newsticker
 - [ ] Configuring gnus
 - [ ] Integrating with github workflow for CI
