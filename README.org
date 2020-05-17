@@ -4,7 +4,7 @@
 - Tested with emacs 26.1 with GNU/Debian 
 - Emacs vanilla key bindings
 
-[[file:demo.png]
+[[file:https://raw.githubusercontent.com/harshaqq/elegant-emacs/master/demo.png]]
 
 * Checklist
 - Emacs 26.1 is strongly recommended
