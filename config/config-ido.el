@@ -9,6 +9,7 @@
   (ido-use-virtual-buffers t)
   (ido-enable-flex-matching t)
   (ido-create-new-buffer 'always)
+  (ido-save-directory-list-file (expand-file-name "ido.last" mine-cache-directory))
   :config
   (ido-mode 1))
 
