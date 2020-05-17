@@ -46,8 +46,9 @@
   (defun exwm/start-dropbox-service ()
     "Start dropbox service if it's not running"
     (require 'subr-x)
-    (if (string-empty-p (shell-command-to-string "dropbox running"))
-	(start-process-shell-command "dropbox" nil "dropbox start")))
+    (when (executable-find "dropbox")
+      (if (string-empty-p (shell-command-to-string "dropbox running"))
+	  (start-process-shell-command "dropbox" nil "dropbox start"))))
 
   (defun exwm/monitor-only-builtin ()
     "Switch to laptop display"
@@ -123,7 +124,9 @@
 
   (defun exwm/screen-shot ()
     (interactive)
-    (start-process-shell-command "scrot" nil "scrot screen-%F-%T.png"))
+    (if (executable-find "scrot")
+	(start-process-shell-command "scrot" nil "scrot screen-%F-%T.png")
+      (message "You need to install scrot to use screenshot feature")))
 
   (use-package exwm
     :ensure t
