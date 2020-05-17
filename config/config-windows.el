@@ -1,10 +1,10 @@
 (use-package windmove
-  :demand t
   :config
   (windmove-default-keybindings 'meta))
 
 (use-package winner
-  :demand t
+  :bind (("<XF86Back>" . winner-undo)
+	 ("<XF86Forward>" . winner-redo))
   :init
   (winner-mode))
 
