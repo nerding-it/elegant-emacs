@@ -54,8 +54,22 @@ exec dbus-launch --exit-with-session emacs
 #+END_SRC
 
 * Work in progress
-- [ ] Configuring newsticker
-- [ ] Configuring gnus
+- [-] Configuring newsticker
+  - [X] Basic configuration
+  - [ ] Adding more URLS
+- [X] Configuring gnus
 - [ ] Integrating with github workflow for CI
 - [ ] Configure emacs as daemon using systemd and test the performance
 - [ ] Configuring the screensaver using =slock=
+- [ ] Configuring grammar
+  - [ ] Configuring flyspell
+  - [ ] Configuring stardict using sdcv
+- [ ] Configuring viper
+- [ ] Starting ssh-agent on startup
+- [ ] Starting =slock= on startup
+- [ ] Setting =xtrlock= on startup
+
+
+
+
+
