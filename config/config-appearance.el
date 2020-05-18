@@ -1,20 +1,16 @@
 (use-package scroll-bar
-  :if (display-graphic-p)
   :config
   (scroll-bar-mode 0))
 
 (use-package menu-bar
-  :if (display-graphic-p)
   :config
   (menu-bar-mode -1))
 
 (use-package tool-bar
-  :if (display-graphic-p)
   :config
   (tool-bar-mode -1))
 
 (use-package fringe
-  :if (display-graphic-p)  
   :config
   (fringe-mode '(nil . 0)))
 
@@ -60,12 +56,11 @@
   :if (eq mine-appearance 'elegant)  
   :ensure t
   :demand t
-  :config
+  :init
   (set-face-attribute 'default nil :family "Iosevka" :height 130)
   (set-face-attribute 'fixed-pitch nil :family "Iosevka")
   (set-face-attribute 'variable-pitch nil :family "Iosevka")
-  (load-theme 'poet-dark t))
-
+  (load-theme 'poet t))
 
 (use-package smart-mode-line
   :if (eq mine-appearance 'elegant)  
