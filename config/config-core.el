@@ -1,5 +1,6 @@
-(use-package emacs
+(use-package emacs    	     
   :demand t
+  :requires subr-x
   :custom
   (inhibit-splash-screen t)
   (inhibit-startup-message t)
