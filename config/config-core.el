@@ -8,7 +8,8 @@
   (backup-directory-alist `((".*" . ,mine-cache-directory)))
   (auto-save-file-name-transforms `((".*" , mine-cache-directory)))
   (user-full-name (string-trim (shell-command-to-string "git config --global user.name")))
-  (user-mail-address (string-trim (shell-command-to-string "git config --global user.email")))  
+  (user-mail-address (string-trim (shell-command-to-string "git config --global user.email")))
+  (browse-url-browser-function 'eww-browse-url)  
   :config
   (set-language-environment "UTF-8")
   (set-default-coding-systems 'utf-8)
