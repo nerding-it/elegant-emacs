@@ -130,8 +130,6 @@
 
   (use-package exwm
     :ensure t
-    :init
-    (exwm-enable)
     :bind
     (("<XF86Calculator>" . calc)
      ("<XF86Launch5>" . delete-other-windows)
