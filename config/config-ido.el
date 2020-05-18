@@ -24,4 +24,8 @@
 		 "M-x "
 		 (all-completions "" obarray 'commandp))))))))
 
+(use-package hippie-exp
+  :bind
+  (("M-SPC" . hippie-expand)))
+
 (provide 'config-ido)
