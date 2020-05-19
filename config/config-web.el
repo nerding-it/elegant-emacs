@@ -5,12 +5,13 @@
 (use-package mhtml-mode
   :mode "\\.html\\'")
 
-(use-package typescript
+(use-package typescript-mode
   :ensure t
   :mode "\\.ts\\'")
 
 (use-package ob-typescript
-  :requires typescript
+  :ensure t
+  :requires typescript-mode
   :after org
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
