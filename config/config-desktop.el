@@ -31,4 +31,29 @@
   :config
   (setq-default save-place t))
 
+(use-package desktop
+  :custom
+  (desktop-path (list mine-cache-directory))
+  (desktop-dirname mine-cache-directory)
+  (desktop-base-file-name "emacs-desktop")    
+  (desktop-buffers-not-to-save
+   (concat "\\("
+           "^nn\\.a[0-9]+\\|\\.log\\|(ftp)\\|^tags\\|^TAGS"
+           "\\|\\.emacs.*\\|\\.diary\\|\\.newsrc-dribble\\|\\.bbdb"
+	   "\\)$"))
+  :config
+  (add-hook 'desktop-after-read-hook
+	    '(lambda ()
+	       ;; desktop-remove clears desktop-dirname
+	       (setq desktop-dirname-tmp desktop-dirname)
+	       (desktop-remove)
+	       (setq desktop-dirname desktop-dirname-tmp)))    
+  (add-to-list 'desktop-globals-to-save 'register-alist)
+  (add-to-list 'desktop-modes-not-to-save 'dired-mode)
+  (add-to-list 'desktop-modes-not-to-save 'Info-mode)
+  (add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+  (add-to-list 'desktop-modes-not-to-save 'fundamental-mode)    
+  (desktop-save-mode 1))
+
+
 (provide 'config-desktop)
