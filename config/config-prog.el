@@ -11,7 +11,11 @@
   (push '("#+END_SRC" . ?⮐) prettify-symbols-alist)
   (push '("#+end_src" . ?⮐) prettify-symbols-alist)
   (push '("[X]" . ?⭗) prettify-symbols-alist)
-  (push '("[ ]" . ?⭘) prettify-symbols-alist)  
+  (push '("[ ]" . ?⭘) prettify-symbols-alist)
+  (push '("TODO" . ?⚛) prettify-symbols-alist)
+  (push '("WAIT" . ?⏳) prettify-symbols-alist)
+  (push '("STOP" . ?⏻) prettify-symbols-alist)
+  (push '("DONE" . ?✔) prettify-symbols-alist)
   (setq prettify-symbols-alist
 	(append prettify-symbols-alist '(
 

@@ -1,7 +1,7 @@
 (use-package org
   :config
   (global-set-key (kbd "C-c c") 'org-capture)
-  (global-set-key (kbd "C-c a") 'org-agenda)  
+  (global-set-key (kbd "C-c a") 'org-agenda)
   :custom
   (org-confirm-babel-evaluate nil)
   (org-directory mine-second-brain-location)
@@ -31,8 +31,8 @@
 		   ("crypt" . ?c)
 		   (:endgrouptag)
 		   (:grouptags)
-		   ("WAIT" . ?W)
-		   ("STOP" . ?C)
+		   ("WAITING" . ?W)
+		   ("CANCELLED" . ?C)
 		   (:endgrouptag)))
 
   (org-use-fast-todo-selection t)
@@ -42,15 +42,14 @@
 		       (sequence "WAIT(w@)" "|" "STOP(c@)")))
   (org-todo-state-tags-triggers '(
 				  ;; Moving to wait adds wait
-				  ("WAIT" ("WAIT" . t))
+				  ("WAIT" ("WAITING" . t))
 				  ;; Moving to stop adds stop, removes wait
-				  ("STOP" ("STOP" . t))
+				  ("STOP" ("CANCELLED" . t))
 				  ;; Moving to done removes wait/stop
-				  ("DONE" ("WAIT") ("STOP"))
+				  ("DONE" ("WAITING") ("CANCELLED"))
 				  ;; Moving to todo removes wait/stop
-				  ("TODO" ("WAIT") ("STOP"))))
+				  ("TODO" ("WAITING") ("CANCELLED"))))
 
-  (org-crypt-key epa-file-encrypt-to)
   (org-crypt-use-before-save-magic)
   (org-tags-exclude-from-inheritance '("crypt"))
   (org-agenda-include-diary t)
