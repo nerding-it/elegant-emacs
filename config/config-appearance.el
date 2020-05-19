@@ -96,8 +96,8 @@
 				       ("research" . "♨")
 				       ("coding" . "⌨")
 				       ("writing" . "✐")
-				       ("WAIT" . "⏳")
-				       ("STOP" . "⏻")
+				       ("WAITING" . "⏳")
+				       ("CANCELLED" . "⏻")
 				       ("crypt" . "")))
   :hook (org-mode . org-pretty-tags-mode))
 
