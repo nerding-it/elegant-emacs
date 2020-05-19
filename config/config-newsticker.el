@@ -3,7 +3,7 @@
   (newsticker-url-list-defaults nil)
   (newsticker-retrieval-interval 0)
   (newsticker-automatically-mark-items-as-old nil)
-  (newsticker-frontend 'newsticker-plainview)
+  (newsticker-frontend 'newsticker-treeview)
   (newsticker-dir (expand-file-name "news/" mine-cache-directory))
   (newsticker-url-list '(
 			 ("reddit-emacs" "https://www.reddit.com/r/emacs.rss" nil nil nil)
