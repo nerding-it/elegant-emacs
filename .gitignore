@@ -8,3 +8,4 @@ node_modules
 *.elc
 ido.last
 url/
+network-security.data
