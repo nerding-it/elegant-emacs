@@ -49,7 +49,7 @@ apt-get install xss-lock slock
 - [[https://github.com/sabof/org-bullets][org-bullets]]
 - [[https://github.com/rnkn/olivetti][olivetti]]
 - [[https://www.gnu.org/software/emms/][emms]]
-
+- debbugs
 * Installation
 - Clone the repository and move the directory to =emacs.d=
 - Use =systemd= to run emacs as daemon script is in =.config/systemd/user/emacs.service=. If you don't want to use window manager you need to remove flag =-f exwm-enable= in service file
