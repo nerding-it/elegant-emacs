@@ -49,11 +49,25 @@ apt-get install xss-lock slock
 - [[https://github.com/sabof/org-bullets][org-bullets]]
 - [[https://github.com/rnkn/olivetti][olivetti]]
 - [[https://www.gnu.org/software/emms/][emms]]
-- debbugs
+- [[https://elpa.gnu.org/packages/debbugs.html][debbugs]]
 * Installation
-- Clone the repository and move the directory to =emacs.d=
-- Use =systemd= to run emacs as daemon script is in =.config/systemd/user/emacs.service=. If you don't want to use window manager you need to remove flag =-f exwm-enable= in service file
-#+BEGIN_SRC sh
+** Method 1 - Simple
+   - Clone the repository and move the directory to =emacs.d=
+   - Just use below script in =xinitrc=, so emacs will start when you run =startx=
+   #+BEGIN_SRC sh
+   exec dbus-launch --exit-with-session emacs -f exwm-enable
+   #+END_SRC
+** Method 2 - Starting emacs as daemon and then starting emacsclient
+   - Clone the repository and move the directory to =emacs.d=
+   - Just use below script in =xinitrc=, so emacs will start when you run =startx=
+   #+BEGIN_SRC sh
+   exec dbus-launch --exit-with-session emacs --daemon -f exwm-enable
+   emacsclient -c
+   #+END_SRC
+** Method 3 - If you prefer emacs daemon through systemd
+   - Clone the repository and move the directory to =emacs.d=
+   - Use =systemd= to run emacs as daemon script is in =.config/systemd/user/emacs.service=. If you don't want to use window manager you need to remove flag =-f exwm-enable= in service file
+   #+BEGIN_SRC sh
   # Move Create directory for systemd like below
   mkdir -p ~/.config/systemd/user
   # Move emacs.service to above directory
@@ -62,15 +76,15 @@ apt-get install xss-lock slock
   systemctl enable --user emacs
   # Start the service 
   systemctl start --user emacs
-#+END_SRC
-- Use below snippet in your =.xinitrc= to make emacs as window manager
-#+BEGIN_SRC sh
+   #+END_SRC
+   - Use below snippet in your =.xinitrc= to make emacs as window manager
+   #+BEGIN_SRC sh
 exec dbus-launch --exit-with-session emacsclient -c
-#+END_SRC
+   #+END_SRC
 * Customization (There are three main variable you can customize for different use cases)
-** =mine-appearance= you can choose either =elegant= or =default=
-** =mine-window-manager= you can enable or disable window manager
-** =mine-second-brain-location= you can change to desired directory for =org-mode=
+  - =mine-appearance= you can choose either =elegant= or =default=
+  - =mine-window-manager= you can enable or disable window manager
+  - =mine-second-brain-location= you can change to desired directory for =org-mode=
 * Work in progress
 - [-] Configuring newsticker
   - [X] Basic configuration
