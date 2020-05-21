@@ -60,7 +60,7 @@
   (set-face-attribute 'default nil :family "Iosevka" :height 130)
   (set-face-attribute 'fixed-pitch nil :family "Iosevka")
   (set-face-attribute 'variable-pitch nil :family "Iosevka")
-  (load-theme 'poet t))
+  (load-theme 'poet-dark t))
 
 (use-package smart-mode-line
   :if (eq mine-appearance 'elegant)  
