@@ -14,6 +14,7 @@
     (exwm-input-set-key (kbd "s-O") 'exwm-layout-toggle-fullscreen)
     (exwm-input-set-key (kbd "s-a") 'async-shell-command)
     (exwm-input-set-key (kbd "s-z") 'exwm/lock-screen)
+    (exwm-input-set-key (kbd "s-q") 'exwm/suspend)
     (exwm-input-set-key (kbd "s-E") 'eww)
     (exwm-input-set-key (kbd "s-c") 'calendar)
     (exwm-input-set-key (kbd "s-t") 'display-time-world))
@@ -121,6 +122,10 @@
   (defun exwm/lock-screen ()
     (interactive)
     (start-process-shell-command "loginctl" nil "loginctl lock-session $XDG_SESSION_ID"))
+
+  (defun exwm/suspend ()
+    (interactive)
+    (start-process-shell-command "suspend" nil "systemctl suspend"))
 
   (defun exwm/screen-shot ()
     (interactive)

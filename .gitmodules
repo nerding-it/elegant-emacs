@@ -1,0 +1,6 @@
+[submodule "meme"]
+	path = meme
+	url = https://github.com/larsmagne/meme
+[submodule "imgur.el"]
+	path = imgur.el
+	url = https://github.com/myuhe/imgur.el
