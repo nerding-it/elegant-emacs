@@ -3,7 +3,7 @@
   :hook ((gnus-group-mode-hook . gnus-topic-mode)
 	 (message-mode-hook . flyspell-mode))
   :custom
-  (gnus-sectondary-select-methods
+  (gnus-secondary-select-methods
    '((nnimap "gmail"
 	     (nnimap-address "imap.gmail.com")
 	     (nnimap-server-port "imaps")
