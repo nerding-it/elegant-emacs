@@ -1,11 +1,12 @@
 
 (defun setup-symbols ()
   (push '(":PROPERTIES:" . ?⌂) prettify-symbols-alist)
-  (push '("DEADLINE:" . ?🅓) prettify-symbols-alist)
-  (push '("SCHEDULED:" . ?🅢) prettify-symbols-alist)
+  (push '("DEADLINE:" . ?⏱) prettify-symbols-alist)
+  (push '("SCHEDULED:" . ?⏲) prettify-symbols-alist)
   (push '("CLOCK:" . ?⏰) prettify-symbols-alist)
   (push '(":LOGBOOK:" . ?⬎) prettify-symbols-alist)
-  (push '(":END:" . ?⬏) prettify-symbols-alist)	 
+  (push '(":END:" . ?⬏) prettify-symbols-alist)
+  (push '(":STYLE:    habit"  . ?♬) prettify-symbols-alist)
   (push '("#+BEGIN_SRC" . ?⮑) prettify-symbols-alist)
   (push '("#+begin_src" . ?⮑) prettify-symbols-alist)
   (push '("#+END_SRC" . ?⮐) prettify-symbols-alist)
@@ -255,7 +256,10 @@
 (use-package prog-mode
   :hook ((prog-mode . variable-pitch-mode)
 	 (prog-mode . display-line-numbers-mode)
-	 (prog-mode . show-paren-mode))
+	 (prog-mode . show-paren-mode)
+	 (prog-mode . flymake-mode)
+	 (prog-mode . abbrev-mode)
+	 (text-mode . abbrev-mode))
   :init
   (when (eq mine-appearance 'elegant)    
     (setq prettify-symbols-unprettify-at-point 'right-edge)
