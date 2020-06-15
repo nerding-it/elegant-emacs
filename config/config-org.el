@@ -1,7 +1,10 @@
 (use-package org
+  :hook (org-mode . electric-pair-mode)
   :config
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
+  (modify-syntax-entry ?/ "(/" org-mode-syntax-table)
+  (modify-syntax-entry ?= "(=" org-mode-syntax-table)
   :custom
   (org-confirm-babel-evaluate nil)
   (org-directory mine-second-brain-location)
@@ -10,8 +13,8 @@
   (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-scheduled-if-done t)
   (org-agenda-skip-timestamp-if-done t)
-  (org-agenda-start-on-weekday 1)
-
+  (org-agenda-start-on-weekday 1)  
+  
   ;; Agenda files
   (org-agenda-files (list
 		     (expand-file-name "inbox.org" org-directory)
@@ -55,14 +58,50 @@
   (org-agenda-include-diary t)
 
   (org-capture-templates `(
-			   ("t" "TODO" entry (file+headline , (expand-file-name "inbox.org" org-directory) "TASKS") "* ❢ %?\n %i\n")
-			   ("a" "ARTICLE" plain (file (lambda ()
-							(let* ((title (read-string "Title: "))
-							       (slug (replace-regexp-in-string
-								      "[^a-z]+" "-" (downcase title)))
-							       (dir (expand-file-name "articles" org-directory)))
-							  (unless (file-exists-p dir)
-							    (make-directory dir))
-							  (expand-file-name (concat slug ".org") dir)))) "#+TITLE: %^{Title}\n#+DATE: %<%Y-%m-%d>"))))
+			   ("t" "TODO"
+			    entry
+			    (file+headline ,
+			     (expand-file-name "inbox.org" org-directory) "TASKS")
+			    "* TODO %?\n %i\n")
+			   ("p" "POST"
+			    plain
+			    (file mine/capture-article)
+			    (function mine/capture-article-template))))
+  :config
+  (defun mine/capture-article ()
+    "Function to capture `article' in `org-mode'."
+    (let* ((article-base-directory (expand-file-name "articles" org-directory))
+	   (article-directory (expand-file-name (format-time-string "%Y/%m/%d" (current-time)) article-base-directory))
+	   (title nil)
+	   (slug nil))
+      (unless (file-exists-p article-directory)
+      	(make-directory article-directory t))
+      (setq title (read-string "Title: "))
+      (setq slug (replace-regexp-in-string "[^a-z]+" "_" (downcase title)))
+      (expand-file-name (concat slug ".org") article-directory)))
+
+  (defun mine/capture-article-template ()
+    (concat "#+TITLE: %^{Title}\n"
+	    "#+DATE: %<%Y-%m-%d>")))
+
+(use-package ox-publish
+  :custom
+  (org-export-html-postamble nil)
+  (org-publish-project-alist
+   `(("blog"
+      :base-directory ,(expand-file-name "articles" org-directory)
+      :publishing-directory ,(expand-file-name "Publish" org-directory)
+      :publishing-function org-html-publish-to-html
+      :language "EN"
+      :make-index t
+      :section-numbers nil
+      :preserve-breaks nil
+      :with-toc nil
+      :with-latex t
+      :auto-sitemap t
+      :html-preamble t
+      :with-footnotes nil
+      :with-creator nil
+      :recursive t))))
 
 (provide 'config-org)
