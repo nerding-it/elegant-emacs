@@ -60,7 +60,7 @@
   (set-face-attribute 'default nil :family "Iosevka" :height 130)
   (set-face-attribute 'fixed-pitch nil :family "Iosevka")
   (set-face-attribute 'variable-pitch nil :family "Iosevka")
-  (load-theme 'poet-dark t))
+  (load-theme 'poet t))
 
 (use-package smart-mode-line
   :if (eq mine-appearance 'elegant)  
@@ -79,40 +79,16 @@
   (olivetti-body-width 100)
   :hook (org-mode . olivetti-mode))
 
-(use-package symon
-  :if (eq mine-appearance 'elegant)    
-  :ensure t
-  :config
-  (symon-mode))
-
-(use-package org-pretty-tags
-  :if (eq mine-appearance 'elegant)   
-  :ensure t
-  :after org
-  :custom
-  (org-pretty-tags-surrogate-strings '(
-				       ("@work" . "☃")
-				       ("@home" . "☂")
-				       ("research" . "♨")
-				       ("coding" . "⌨")
-				       ("writing" . "✐")
-				       ("WAITING" . "⏳")
-				       ("CANCELLED" . "⏻")
-				       ("crypt" . "")))
-  :hook (org-mode . org-pretty-tags-mode))
-
 (use-package org-bullets
   :if (eq mine-appearance 'elegant)  
   :ensure t
   :after org
-  :custom
-  (org-bullets-bullet-list '("⮚" "⮛" "⮞" "⮟" "ⱺ" "ⱴ"))
   :hook (org-mode . org-bullets-mode))
 
 (use-package custom
   :if (eq mine-appearance 'default)
   :config
-  (set-frame-font "DejaVu Sans Mono-12")
+  (set-frame-font "Hack-12")
   (load-theme 'adwaita))
 
 (provide 'config-appearance)
