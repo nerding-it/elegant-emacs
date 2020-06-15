@@ -7,7 +7,7 @@
   "The appearance to use."
   :type '(radio
 	  (const :tag "default" default)
-	  (const :tag "elegant" poet))
+	  (const :tag "elegant" elegant))
   :group 'mine)
 
 (defcustom mine-cache-directory
@@ -30,6 +30,7 @@
 
 ;; Make sure you already installed `use-package` through package manager
 ;; In my case I am using debian, I just install with apt-get install elpa-usepackage
+;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/elpa/use-package-2.4")
 (require 'use-package)
 
 (use-package cus-edit  
@@ -39,6 +40,7 @@
   :init
   (when (file-exists-p custom-file)
     (load custom-file)))
+
 
 (let ((config-directory (expand-file-name "config/" user-emacs-directory)))
   (load (expand-file-name "config-core.el" config-directory))
@@ -64,7 +66,12 @@
   (load (expand-file-name "config-grammar.el" config-directory))
   (load (expand-file-name "config-web.el" config-directory))
   (load (expand-file-name "config-misc.el" config-directory))
-  (load (expand-file-name "config-abbrev.el" config-directory))               
+  (load (expand-file-name "config-abbrev.el" config-directory))
+  (load (expand-file-name "config-ediff.el" config-directory))
+  (load (expand-file-name "config-vc.el" config-directory))    
+  (load (expand-file-name "config-rust.el" config-directory))
+  (load (expand-file-name "config-tex.el" config-directory))
+  (load (expand-file-name "config-erc.el" config-directory))                     
   (require 'config-core)
   (require 'config-calendar)
   (require 'config-tls)
@@ -88,4 +95,9 @@
   (require 'config-grammar)
   (require 'config-web)
   (require 'config-misc)
-  (require 'config-abbrev))
+  (require 'config-abbrev)
+  (require 'config-ediff)
+  (require 'config-vc)
+  (require 'config-rust)
+  (require 'config-tex)
+  (require 'config-erc))
