@@ -1,22 +1,4 @@
-
 (defun setup-symbols ()
-  (push '(":PROPERTIES:" . ?⌂) prettify-symbols-alist)
-  (push '("DEADLINE:" . ?⏱) prettify-symbols-alist)
-  (push '("SCHEDULED:" . ?⏲) prettify-symbols-alist)
-  (push '("CLOCK:" . ?⏰) prettify-symbols-alist)
-  (push '(":LOGBOOK:" . ?⬎) prettify-symbols-alist)
-  (push '(":END:" . ?⬏) prettify-symbols-alist)
-  (push '(":STYLE:    habit"  . ?♬) prettify-symbols-alist)
-  (push '("#+BEGIN_SRC" . ?⮑) prettify-symbols-alist)
-  (push '("#+begin_src" . ?⮑) prettify-symbols-alist)
-  (push '("#+END_SRC" . ?⮐) prettify-symbols-alist)
-  (push '("#+end_src" . ?⮐) prettify-symbols-alist)
-  (push '("[X]" . ?⭗) prettify-symbols-alist)
-  (push '("[ ]" . ?⭘) prettify-symbols-alist)
-  (push '("TODO" . ?⚛) prettify-symbols-alist)
-  (push '("WAIT" . ?⏳) prettify-symbols-alist)
-  (push '("STOP" . ?⏻) prettify-symbols-alist)
-  (push '("DONE" . ?✔) prettify-symbols-alist)
   (setq prettify-symbols-alist
 	(append prettify-symbols-alist '(
 
@@ -254,20 +236,28 @@
   (prettify-symbols-mode +1))
 
 (use-package prog-mode
-  :hook ((prog-mode . variable-pitch-mode)
-	 (prog-mode . display-line-numbers-mode)
-	 (prog-mode . show-paren-mode)
-	 (prog-mode . flymake-mode)
-	 (prog-mode . abbrev-mode)
-	 (text-mode . abbrev-mode))
+  :hook (prog-mode . (lambda ()
+			 (abbrev-mode 1)
+			 (display-line-numbers-mode 1)
+			 (show-paren-mode 1)
+			 (electric-pair-mode 1)
+			 (flymake-mode 1)))		       
   :init
   (when (eq mine-appearance 'elegant)    
     (setq prettify-symbols-unprettify-at-point 'right-edge)
+    (add-hook 'prog-mode #'variable-pitch-mode)
     (mapc (lambda (hook)
 	    (add-hook hook (lambda ()			   
 			     (setup-symbols)
 			     (refresh-symbols))))
 	  '(text-mode-hook
 	    prog-mode-hook))))
+
+(use-package flymake
+  :bind (("M-n" . flymake-goto-next-error)
+	 ("M-p" . flymake-goto-prev-error)
+	 ("C-c ! n" . flymake-goto-next-error)
+	 ("C-c ! p" . flymake-goto-prev-error)
+	 ("C-c ! l" . flymake-show-diagnostics-buffer)))
 
 (provide 'config-prog)
